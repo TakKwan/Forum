@@ -1,7 +1,7 @@
 const { json } = require('express')
 const { Post } = require('../models')
 
-const createPost = async (req, res) => {
+const createOne = async (req, res) => {
   try {
     const newPost = await new Post(req.body)
     await newPost.save()
@@ -11,7 +11,7 @@ const createPost = async (req, res) => {
   }
 }
 
-const readPost = async (req, res) => {
+const readOne = async (req, res) => {
   try {
     const post = await Post.findOne({ _id: req.params.postId })
 
@@ -21,7 +21,7 @@ const readPost = async (req, res) => {
   }
 }
 
-const readPosts = async (req, res) => {
+const readAll = async (req, res) => {
   try {
     const posts = await Post.find({})
 
@@ -31,7 +31,7 @@ const readPosts = async (req, res) => {
   }
 }
 
-const updatePost = async (req, res) => {
+const updateOne = async (req, res) => {
   try {
     const post = await new Post(req.body)
     const result = await Post.updateOne({ _id: post._id }, post)
@@ -46,7 +46,7 @@ const updatePost = async (req, res) => {
   }
 }
 
-const deletePost = async (req, res) => {
+const deleteOne = async (req, res) => {
   try {
     await Post.deleteOne({ _id: req.query.postId })
     return res.status(201).json()
@@ -56,9 +56,9 @@ const deletePost = async (req, res) => {
 }
 
 module.exports = {
-  createPost,
-  readPost,
-  readPosts,
-  updatePost,
-  deletePost
+  createOne,
+  readOne,
+  readAll,
+  updateOne,
+  deleteOne
 }

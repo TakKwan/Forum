@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const db = require('./db')
 const logger = require('morgan')
-const postControllers = require('./controllers/Post')
+const controllers = require('./controllers')
 
 const PORT = process.env.PORT || 3001
 
@@ -16,11 +16,17 @@ app.use(express.urlencoded({ extended: true }))
 
 // routes
 app.get('/', (req, res) => res.send('Hello!'))
-app.post('/post', postControllers.createPost)
-app.get('/post/:postId', postControllers.readPost)
-app.get('/posts', postControllers.readPosts)
-app.put('/post', postControllers.updatePost)
-app.delete('/post', postControllers.deletePost)
+
+app.post('/post', controllers.post.createOne)
+app.get('/post/:postId', controllers.post.readOne)
+app.get('/posts', controllers.post.readAll)
+app.put('/post', controllers.post.updateOne)
+app.delete('/post', controllers.post.deleteOne)
+
+app.post('/user', controllers.user.createOne)
+app.get('/user/:userId', controllers.user.readOne)
+app.put('/user', controllers.user.updateOne)
+app.delete('/user', controllers.user.deleteOne)
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 

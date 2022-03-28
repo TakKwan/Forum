@@ -1,44 +1,54 @@
 const { json } = require('express')
 const { User } = require('../models')
 
-const createUser = async (req, res) => {
+const createOne = async (req, res) => {
   try {
     const newUser = await new User(req.body)
     await newUser.save()
-    return res.status(201).json({ newUser })
+    return res.status(201).json(newUser)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
 }
 
-const readUser = async (req, res) => {
+const readOne = async (req, res) => {
   try {
-    const Users = await User.find({})
+    const user = await User.findOne({ _id: req.params.userId })
 
-    return res.status(201).json({ Users })
+    return res.status(201).json(user)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
 }
 
-const updateUser = async (req, res) => {
+const readAll = async (req, res) => {
   try {
-    const User = await new User(req.body)
-    const result = await User.updateOne({ _id: User._id }, User)
+    const users = await User.find({})
+
+    return res.status(201).json(users)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+}
+
+const updateOne = async (req, res) => {
+  try {
+    const user = await new User(req.body)
+    const result = await User.updateOne({ _id: user._id }, user)
 
     if (result.modifiedCount > 0) {
-      return res.status(201).json({ User })
+      return res.status(201).json(user)
     } else {
-      return res.status(400).json({ error: 'could not update User' })
+      return res.status(400).json({ error: 'could not update user' })
     }
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
 }
 
-const deleteUser = async (req, res) => {
+const deleteOne = async (req, res) => {
   try {
-    await User.deleteOne({ _id: req.query.UserId })
+    await User.deleteOne({ _id: req.query.userId })
     return res.status(201).json()
   } catch (error) {
     return res.status(400).json({ error: error.message })
@@ -46,8 +56,9 @@ const deleteUser = async (req, res) => {
 }
 
 module.exports = {
-  createUser,
-  readUser,
-  updateUser,
-  deleteUser
+  createOne,
+  readOne,
+  readAll,
+  updateOne,
+  deleteOne
 }
