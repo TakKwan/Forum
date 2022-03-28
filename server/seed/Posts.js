@@ -7,7 +7,7 @@ db.on(
 )
 
 const main = async () => {
-  const Post = {
+  const onePost = {
     userId: null,
     content: 'Hello!',
     date: new Date()
@@ -15,8 +15,8 @@ const main = async () => {
 
   console.log(Post.date)
 
-  await Customer.insertMany(customers)
-  console.log('Created customers !')
+  await Post.insertMany(onePost)
+  console.log('Created Posts !')
 }
 const run = async () => {
   await main()
