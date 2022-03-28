@@ -1,34 +1,38 @@
 # Forum
 
-## [Tak Lo](https://www.linkedin.com/in/takkwanlo/)
-
 ---
 
-### Description:
+## [Tak Lo](https://www.linkedin.com/in/takkwanlo/)
+
+## Description:
+
+---
 
 This is a forum build for educational purposes.
 
 ---
 
-### Getting Started:
-
-## [Trello](https://trello.com/b/SvzbUEZZ/forum)
+## Getting Started:
 
 ---
 
-### Tech:
+## [Trello](https://trello.com/b/SvzbUEZZ/forum)
+
+## Tech:
+
+---
 
 React
 Mongoose
 Express
 Node.js
 
----
-
-# Future Updates:
+## Future Updates:
 
 ---
 
-# Credits:
+## Credits:
+
+---
 
 General Assembly
