@@ -5,7 +5,7 @@ const createPost = async (req, res) => {
   try {
     const newPost = await new Post(req.body)
     await newPost.save()
-    return res.status(201).json({ newPost })
+    return res.status(201).json(newPost)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
@@ -13,9 +13,19 @@ const createPost = async (req, res) => {
 
 const readPost = async (req, res) => {
   try {
+    const post = await Post.findOne({ _id: req.params.postId })
+
+    return res.status(201).json(post)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+}
+
+const readPosts = async (req, res) => {
+  try {
     const posts = await Post.find({})
 
-    return res.status(201).json({ posts })
+    return res.status(201).json(posts)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
@@ -27,7 +37,7 @@ const updatePost = async (req, res) => {
     const result = await Post.updateOne({ _id: post._id }, post)
 
     if (result.modifiedCount > 0) {
-      return res.status(201).json({ post })
+      return res.status(201).json(post)
     } else {
       return res.status(400).json({ error: 'could not update post' })
     }
@@ -48,6 +58,7 @@ const deletePost = async (req, res) => {
 module.exports = {
   createPost,
   readPost,
+  readPosts,
   updatePost,
   deletePost
 }

@@ -17,7 +17,8 @@ app.use(express.urlencoded({ extended: true }))
 // routes
 app.get('/', (req, res) => res.send('Hello!'))
 app.post('/post', postControllers.createPost)
-app.get('/post', postControllers.readPost)
+app.get('/post/:postId', postControllers.readPost)
+app.get('/posts', postControllers.readPosts)
 app.put('/post', postControllers.updatePost)
 app.delete('/post', postControllers.deletePost)
 
