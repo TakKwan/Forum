@@ -1,4 +1,3 @@
-const { json } = require('express')
 const { User } = require('../models')
 
 const createOne = async (req, res) => {

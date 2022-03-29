@@ -20,6 +20,7 @@ app.get('/', (req, res) => res.send('Hello!'))
 app.post('/post', controllers.post.createOne)
 app.get('/post/:postId', controllers.post.readOne)
 app.get('/posts', controllers.post.readAll)
+app.get('/getposts', controllers.post.getPosts)
 app.put('/post', controllers.post.updateOne)
 app.delete('/post', controllers.post.deleteOne)
 

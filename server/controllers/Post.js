@@ -1,4 +1,3 @@
-const { json } = require('express')
 const { Post } = require('../models')
 
 const createOne = async (req, res) => {
@@ -6,6 +5,17 @@ const createOne = async (req, res) => {
     const newPost = await new Post(req.body)
     await newPost.save()
     return res.status(201).json(newPost)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+}
+
+const getPosts = async (req, res) => {
+  try {
+    const query = { $text: { $search: req.query.searchTerms } }
+    const posts = await Post.find(query)
+
+    return res.status(201).json(posts)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
@@ -60,5 +70,6 @@ module.exports = {
   readOne,
   readAll,
   updateOne,
-  deleteOne
+  deleteOne,
+  getPosts
 }
