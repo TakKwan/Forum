@@ -10,6 +10,19 @@ const createOne = async (req, res) => {
   }
 }
 
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      email: req.body.email,
+      password: req.body.password
+    })
+
+    return res.status(201).json(user)
+  } catch (error) {
+    return res.status(400).json({ error: error.message })
+  }
+}
+
 const readOne = async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.params.userId })
@@ -59,5 +72,6 @@ module.exports = {
   readOne,
   readAll,
   updateOne,
-  deleteOne
+  deleteOne,
+  getUser
 }
