@@ -85,6 +85,7 @@ const updateOne = async (req, res) => {
 const deleteOne = async (req, res) => {
   try {
     await Post.deleteOne({ _id: req.query._id, userId: req.query.userId })
+
     return res.status(201).json()
   } catch (error) {
     return res.status(400).json({ error: error.message })
