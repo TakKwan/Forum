@@ -35,6 +35,7 @@ const Post = ({ _id, user, content, date, disabled, removePost }) => {
       _id,
       user: user._id
     }
+
     e.preventDefault()
     await axios.delete(backend.baseUrl + backend.post.deleteOne, {
       params: post
