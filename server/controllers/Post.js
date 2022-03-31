@@ -9,6 +9,7 @@ const createOne = async (req, res) => {
   try {
     const newPost = await new Post(req.body).populate('user', SAFE_USER_FIELDS)
     await newPost.save()
+
     return res.status(201).json(newPost)
   } catch (error) {
     return res.status(400).json({ error: error.message })
