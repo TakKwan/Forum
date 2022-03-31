@@ -113,8 +113,6 @@ input:focus {
 .form form button,
 .neumorphicInverse {
   box-shadow: none;
-  /* border: none; */
-  /* border-radius: 5px; */
   background-color: #3b3838;
   color: white;
   transition: all 0.2s ease-out;
