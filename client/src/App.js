@@ -26,6 +26,7 @@ const PrivateOutlet = () => {
 
 function App() {
   const navigate = useNavigate()
+
   const [user, setUser] = useState(getUserFromSessionStorage())
   const setNewUser = (newUser) => {
     setUser(newUser)
