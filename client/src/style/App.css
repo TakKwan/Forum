@@ -82,6 +82,7 @@ input:focus {
 }
 
 .form form input {
+  
   padding: 10px;
   border: none;
   border-radius: 5px 5px 0 0;
