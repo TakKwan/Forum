@@ -20,7 +20,7 @@ const Profile = ({ user }) => {
 
   return (
     <div className="profile">
-      <h1>{user.username}</h1>
+      <h1> {user.username} </h1>
       {posts.map((post) => (
         <Post key={post._id} {...post} />
       ))}
