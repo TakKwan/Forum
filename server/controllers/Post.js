@@ -20,7 +20,6 @@ const getUserPosts = async (req, res) => {
   try {
     const posts = await Post.find({ userId: req.query.userId }).populate(
       'user',
-
       SAFE_USER_FIELDS
     )
 
@@ -58,6 +57,7 @@ const readOne = async (req, res) => {
 const readAll = async (req, res) => {
   try {
     const posts = await Post.find({}).populate('user', SAFE_USER_FIELDS)
+
     return res.status(201).json(posts)
   } catch (error) {
     return res.status(400).json({ error: error.message })
