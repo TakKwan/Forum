@@ -67,6 +67,7 @@ const readAll = async (req, res) => {
 const updateOne = async (req, res) => {
   try {
     const post = await new Post(req.body)
+
     const result = await Post.updateOne(
       { userId: post.userId, _id: post._id },
       post
